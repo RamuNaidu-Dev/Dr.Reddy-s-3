@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" type="image/x-icon" href="Favicon.jpg" sizes="62x32" />
+
+    <title>Dr. Reddy's GMO Sites</title>
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <div class="container-1">
+      <div style="display: flex; align-items: center; gap: 20px">
+        <img src="Reddy's logo.jpg" alt="Dr. Reddy's Logo" />
+        <strong id="name">Dr. Reddy's GMO Sites</strong>
+      </div>
+      <div class="search-bar">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search Here..."
+          onkeyup="filterSites()"
+        />
+      </div>
+    </div>
+
+    <div class="container-2" id="siteContainer">
+      <!-- Bachupally Section -->
+      <div class="location-section">
+        <div class="location-title">Bachupally</div>
+        <div class="site-buttons">
+          <button class="site-button" onclick="goToDetails('FTO-2')">
+            FTO-2
+          </button>
+          <button class="site-button" onclick="goToDetails('FTO-3')">
+            FTO-3
+          </button>
+          <button class="site-button" onclick="goToDetails('Biologics')">
+            Biologics
+          </button>
+          <button class="site-button" onclick="goToDetails('IPDO')">
+            IPDO
+          </button>
+        </div>
+      </div>
+
+      <!-- Bollaram Section -->
+      <div class="location-section">
+        <div class="location-title">Bollaram</div>
+        <div class="site-buttons">
+          <button class="site-button" onclick="goToDetails('FTO-1')">
+            FTO-1
+          </button>
+          <button class="site-button" onclick="goToDetails('CTO-1')">
+            CTO-1
+          </button>
+          <button class="site-button" onclick="goToDetails('CTO-2')">
+            CTO-2
+          </button>
+          <button class="site-button" onclick="goToDetails('CTO-3')">
+            CTO-3
+          </button>
+        </div>
+      </div>
+
+      <!-- Miryalaguda Section -->
+      <div class="location-section">
+        <div class="location-title">Miryalaguda</div>
+        <div class="site-buttons">
+          <button class="site-button" onclick="goToDetails('CTO-5')">
+            CTO-5
+          </button>
+        </div>
+      </div>
+
+      <!-- Duvvada Section -->
+      <div class="location-section">
+        <div class="location-title">Duvvada</div>
+        <div class="site-buttons">
+          <button class="site-button" onclick="goToDetails('FTO-7')">
+            FTO-7
+          </button>
+          <button class="site-button" onclick="goToDetails('FTO-9')">
+            FTO-9
+          </button>
+        </div>
+      </div>
+
+      <!-- Pydi-Bheemavaram Section -->
+      <div class="location-section">
+        <div class="location-title">Pydi-Bheemavaram</div>
+        <div class="site-buttons">
+          <button class="site-button" onclick="goToDetails('CTO-6')">
+            CTO-6
+          </button>
+          <button class="site-button" onclick="goToDetails('FTO SEZ PU1')">
+            FTO SEZ PU1
+          </button>
+          <button class="site-button" onclick="goToDetails('FTO SEZ PU2')">
+            FTO SEZ PU2
+          </button>
+          <button class="site-button" onclick="goToDetails('CTO SEZ')">
+            CTO SEZ
+          </button>
+        </div>
+      </div>
+
+      <!-- Baddi Section -->
+      <div class="location-section">
+        <div class="location-title">Baddi</div>
+        <div class="site-buttons">
+          <button class="site-button" onclick="goToDetails('FTO-6')">
+            FTO-6
+          </button>
+          <button class="site-button" onclick="goToDetails('FTO-8')">
+            FTO-8
+          </button>
+          <button class="site-button" onclick="goToDetails('FTO-12')">
+            FTO-12
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

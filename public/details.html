@@ -1,0 +1,142 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Site Details</title>
+    <link rel="stylesheet" href="styles.css" />
+
+    <style>
+      button {
+        padding: 10px 20px;
+        background-color: #2f80ed;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+
+      button:hover {
+        background-color: #1c60b3;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button onclick="goHome()">Back to Home</button>
+
+    <h1 id="site-title">Loading...</h1>
+    <p id="site-description">Fetching site details...</p>
+
+    <script src="script.js"></script>
+  </body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Site Details</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      button {
+        padding: 10px 20px;
+        background-color: #2f80ed;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+
+      button:hover {
+        background-color: #1c60b3;
+      }
+
+      .data-section {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        margin-top: 20px;
+      }
+
+      .data-section h2 {
+        color: #333;
+        margin-bottom: 10px;
+      }
+
+      .month-entry {
+        margin-left: 20px;
+        margin-bottom: 8px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button onclick="goHome()"> Back to Home </button>
+    <h1 id="site-title">Loading...</h1>
+    <div id="site-data-container">
+      <p>Loading site information...</p>
+    </div>
+
+    <script>
+      function goHome() {
+        window.location.href = "index.html";
+      }
+
+      async function loadSiteDetails() {
+        const params = new URLSearchParams(window.location.search);
+        const siteName = params.get("site");
+        document.getElementById("site-title").innerText = siteName;
+
+        try {
+          const res = await fetch(`/api/sites/${siteName}`);
+          const site = await res.json();
+
+          const container = document.getElementById("site-data-container");
+          container.innerHTML = "";
+
+          if (!site.data || site.data.length === 0) {
+            container.innerHTML = "<p>No data found for this site.</p>";
+            return;
+          }
+
+          // Group data by year
+          const groupedByYear = {};
+          site.data.forEach((entry) => {
+            if (!groupedByYear[entry.year]) groupedByYear[entry.year] = [];
+            groupedByYear[entry.year].push(entry);
+          });
+
+          // Create and append sections by year
+          for (const year of Object.keys(groupedByYear).sort((a, b) => b - a)) {
+            const yearSection = document.createElement("div");
+            yearSection.classList.add("data-section");
+
+            const yearHeading = document.createElement("h2");
+            yearHeading.innerText = `Year: ${year}`;
+            yearSection.appendChild(yearHeading);
+
+            groupedByYear[year].forEach((entry) => {
+              const monthEntry = document.createElement("div");
+              monthEntry.classList.add("month-entry");
+              monthEntry.innerHTML = `<strong>${entry.month}:</strong> ${entry.info}`;
+              yearSection.appendChild(monthEntry);
+            });
+
+            container.appendChild(yearSection);
+          }
+        } catch (err) {
+          console.error("Error loading site data:", err);
+          document.getElementById("site-data-container").innerHTML =
+            "<p>Failed to load site information.</p>";
+        }
+      }
+
+      window.onload = loadSiteDetails;
+    </script>
+  </body>
+</html>
+
